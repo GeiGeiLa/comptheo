@@ -31,13 +31,13 @@ machine = TocMachine(
             "dest": "state2",
             "conditions": "is_going_to_state2",
         },
-        {
-            "trigger": "go_back", 
-            "source": ["state1", "state2"], 
-            "dest": "user",
-            #newly added by me
-            "conditions": "is_going_back"
-        },
+        # {
+        #     "trigger": "go_back", 
+        #     "source": ["state1", "state2"], 
+        #     "dest": "user",
+        #     #newly added by me
+        #     "conditions": "is_going_back"
+        # },
     ],
     initial="user",
     auto_transitions=False,
@@ -125,8 +125,8 @@ def webhook_handler():
             continue
         if not isinstance(event.message, TextMessage):
             continue
-        if(event.message.text.lower() == "draw"):
-            show_fsm()
+        # if(event.message.text.lower() == "draw"):
+        #     show_fsm()
         if not isinstance(event.message.text, str):
             continue
         print(f"\nFSM STATE: {machine.state}")
