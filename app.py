@@ -110,7 +110,7 @@ def webhook_handler():
     # get request body as text
     body = request.get_data(as_text=True)
     mdoby = "Request body"+body
-    app.logger.info(f"Request body: {mdoby}")
+    app.logger.info(mdoby)
     # parse webhook body
     try:
         events = parser.parse(body, signature)
