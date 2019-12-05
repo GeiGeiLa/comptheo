@@ -41,5 +41,8 @@ class TocMachine(GraphMachine):
 
     def is_going_back(self, event):
         text = event.message.text
-        return text.lower() == "go back"
+        return text.lower() == "go back":
+            
+    def goback(self):
+        self.go_back()
     
