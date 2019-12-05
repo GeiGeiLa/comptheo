@@ -35,7 +35,6 @@ machine = TocMachine(
             "trigger": "go_back", 
             "source": ["state1", "state2"], 
             "dest": "user",
-            "conditions": "is_going_back",
         },
     ],
     initial="user",
