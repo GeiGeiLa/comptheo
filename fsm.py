@@ -21,7 +21,7 @@ class TocMachine(GraphMachine):
         send_text_message(reply_token, "Trigger state1")
         #self.go_back()
 
-    def on_exit_state1(self):
+    def on_exit_state1(self, *args, **kwargs):
         print("Leaving state1")
 
     def is_going_to_state2(self, event):
@@ -36,7 +36,7 @@ class TocMachine(GraphMachine):
         send_text_message(reply_token, "Trigger state2")
         #self.go_back()
 
-    def on_exit_state2(self):
+    def on_exit_state2(self, *args, **kwargs):
         print("Leaving state2")
 
     def is_going_back(self, event):
@@ -47,7 +47,7 @@ class TocMachine(GraphMachine):
         send_text_message(reply_token, "Trigger user")
         #self.go_back()
         
-    def on_exit_user(self):
+    def on_exit_user(self, *args, **kwargs):
         print("Leaving user")
             
 
