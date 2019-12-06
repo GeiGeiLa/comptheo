@@ -50,10 +50,8 @@ try:
         show_conditions=True,
     )
 except:
-    pass
-finally:
     print("Error occured")
-    send_text_message("", "Trigger user")
+
 
 app = Flask(__name__, static_url_path="")
 
