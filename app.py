@@ -15,39 +15,45 @@ print(platform.python_version())
 accesstoken = "qg4eVtnYir36ZcCSDNZyXyy+lpyDaM9Py1YIGzlvdsd82IUPYSfIZoLaYHroMQC7agDi2c3iI6JndkMgM9GwRHUqnilvhranozggoKPKug8wW7NaM5eUvJ6qWgQNqm6U/wHaLUtfVp63gSVOBi/9BQdB04t89/1O/w1cDnyilFU="
 secret = "48da0c6234a4fca127ccaae491c55dbf"
 
-machine = TocMachine(
-    states=["user", "state1", "state2"],
-    transitions=
-    [
-        {
-            "trigger": "advance",
-            "source": "user",
-            "dest": "state1",
-            "conditions": "is_going_to_state1",
-        },
-        {
-            "trigger": "advance",
-            "source": "user",
-            "dest": "state2",
-            "conditions": "is_going_to_state2",
-        },
-        {
-            "trigger": "advance", 
-            "source":"state1", 
-            "dest": "user",
-            "conditions": "is_going_back"
-        },
-        {
-            "trigger": "advance", 
-            "source":  "state2", 
-            "dest": "user",
-            "conditions": "is_going_back"
-        },
-    ],
-    initial="user",
-    auto_transitions=False,
-    show_conditions=True,
-)
+try:
+    machine = TocMachine(
+        states=["user", "state1", "state2"],
+        transitions=
+        [
+            {
+                "trigger": "advance",
+                "source": "user",
+                "dest": "state1",
+                "conditions": "is_going_to_state1",
+            },
+            {
+                "trigger": "advance",
+                "source": "user",
+                "dest": "state2",
+                "conditions": "is_going_to_state2",
+            },
+            {
+                "trigger": "advance", 
+                "source":"state1", 
+                "dest": "user",
+                "conditions": "is_going_back"
+            },
+            {
+                "trigger": "advance", 
+                "source":  "state2", 
+                "dest": "user",
+                "conditions": "is_going_back"
+            },
+        ],
+        initial="user",
+        auto_transitions=False,
+        show_conditions=True,
+    )
+except:
+    pass
+finally:
+    print("Error occured")
+    send_text_message("", "Trigger user")
 
 app = Flask(__name__, static_url_path="")
 
