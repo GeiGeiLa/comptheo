@@ -42,6 +42,13 @@ class TocMachine(GraphMachine):
     def is_going_back(self, event):
         text = event.message.text
         return text.lower() == "go back"
+    def on_enter_user(self, event):
+        reply_token = event.reply_token
+        send_text_message(reply_token, "Trigger user")
+        #self.go_back()
+        
+    def on_exit_user(self):
+        print("Leaving user")
             
 
     
