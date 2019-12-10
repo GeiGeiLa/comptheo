@@ -5,6 +5,8 @@ import utils
 from linebot import LineBotApi
 from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
 import parse_weather
+
+
 class TocMachine(GraphMachine):
     def __init__(self, **machine_configs):
         self.machine = GraphMachine(model=self, **machine_configs)
@@ -20,12 +22,12 @@ class TocMachine(GraphMachine):
         print("I'm entering state1")
         reply_token = event.reply_token
         send_text_message(reply_token, "Trigger state1")
-        #self.go_back()
+        # self.go_back()
 
     def on_exit_state1(self, *args, **kwargs):
         print("Leaving state1")
 
-    #state2
+    # state2
     def is_going_to_state2(self, event):
         self.text = event.message.text
         print(self.text)
@@ -44,64 +46,69 @@ class TocMachine(GraphMachine):
     def is_going_back(self, event):
         self.text = event.message.text
         return (self.text).lower() == "go back"
+
     def on_enter_user(self, event):
         reply_token = event.reply_token
         send_text_message(reply_token, "Trigger user")
-        #self.go_back()
-        
+        # self.go_back()
+
     def on_exit_user(self, *args, **kwargs):
         print("Leaving user")
-    
+
     # cat
     def can_see_cat(self, event):
         print("checking cat")
-        is_cat = (event.message.text).lower() in ["cat", "kitty", "puma", "cats"]
+        is_cat = (event.message.text).lower() in [
+            "cat", "kitty", "puma", "cats"]
         print(is_cat)
         return is_cat
 
     def on_enter_cat(self, event):
         print("enter cat")
         reply_token = event.reply_token
-        utils.send_image_url(utils.userID, utils.MyImage.cat_url)
+        utils.send_image_url(utils.userID, utils.MyImage['cat'])
         send_text_message(reply_token, "Do you like this cat?")
+
     def on_exit_cat(self, *args, **kwargs):
         print("Goodbye from Messi the cougar.")
-    
+
     # like cat answer
     def can_answer_cat(self, event):
         self.text = event.message.text
-        return (self.text).lower() in ["like","yes","hate","no"]
-    
+        return (self.text).lower() in ["like", "yes", "hate", "no"]
+
     def on_enter_likecat(self, event):
         print("enter like cat?")
         reply_token = event.reply_token
-        if self.text.lower() in ["hate","no"]:
+        if self.text.lower() in ["hate", "no"]:
             print("hate")
-            send_text_message(reply_token, "So you are a dog person? Eat this!")
-            utils.send_image_url(utils.userID, utils.MyImage.dog_url)
-        else: 
+            send_text_message(
+                reply_token, "So you are a dog person? Eat this!")
+            utils.send_image_url(utils.userID, utils.MyImage['dog'])
+
+        else:
             send_text_message(reply_token, "Alright")
+
     def on_exit_likecat(self, *args, **kwargs):
         print("Answer complete")
-    
+
     # weather
-    def is_toweather(self,event):
+    def is_toweather(self, event):
         self.text = event.message.text
         return (self.text).lower() == "weather" or self.text == "天氣"
-    def on_enter_weather(self,event):
+
+    def on_enter_weather(self, event):
         print("into weather")
         reply_token = event.reply_token
         wb = Weatherbot()
         self.text = event.message.text
         response = wb.getResponse(self.text)
         print(response)
-        send_text_message(reply_token,response)
+        send_text_message(reply_token, response)
         self.go_back()
-    def on_exit_weather(self,event):
+
+    def on_exit_weather(self, event):
         print("bye bye weather")
-
-
-
 
     # def on_enter_(self, event):
     #     pass
@@ -109,6 +116,7 @@ class TocMachine(GraphMachine):
     #     pass
     # def yourcondition(self, *args, **kwargs):
     #     pass
+
 
 class Weatherbot(object):
     """
@@ -140,7 +148,7 @@ class Weatherbot(object):
         """
 
         for city in self.taiwan_cities:
- 
+
             if city in sentence:
                 return city
         return "臺南"

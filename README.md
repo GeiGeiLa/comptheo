@@ -71,12 +71,12 @@ Or You can use [servo](http://serveo.net/) to expose local servers to the intern
 
 
 ## Finite State Machine
-![fsm](./img/show-fsm.png)
+![fsm](./fsm.png)
 
 ## Usage
 The initial state is set to `user`.
 
-Every time `user` state is triggered to `advance` to another state, it will `go_back` to `user` state after the bot replies corresponding message.
+Every time `user` state is triggered to `advance` to another state, user needs to type `go_back` to `user` state after the bot replies corresponding message.
 
 * user
 	* Input: "go to state1"
