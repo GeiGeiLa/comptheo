@@ -3,7 +3,7 @@ from transitions.extensions import GraphMachine
 from utils import send_text_message
 import utils
 from linebot import LineBotApi
-from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSendMessage
+from linebot.models import MessageEvent, TextMessage, TextSendMessage, ImageSendMessage, VideoSendMessage
 import parse_weather
 
 
@@ -87,8 +87,9 @@ class TocMachine(GraphMachine):
             utils.send_image_url(utils.userID, utils.MyImage['dog'])
 
         else:
-            send_text_message(reply_token, "Alright")
-
+            send_text_message(reply_token, "I love you!")
+            utils.send_video_url(utils.userID, "./iloveyou.mp4")
+            print("video sent")
     def on_exit_likecat(self, *args, **kwargs):
         print("Answer complete")
 
@@ -107,7 +108,7 @@ class TocMachine(GraphMachine):
         send_text_message(reply_token, response)
         self.go_back()
 
-    def on_exit_weather(self, event):
+    def on_exit_weather(self):
         print("bye bye weather")
 
     # def on_enter_(self, event):

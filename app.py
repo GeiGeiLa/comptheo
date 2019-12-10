@@ -9,15 +9,15 @@ from linebot.exceptions import InvalidSignatureError
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
 import platform
 from fsm import TocMachine
-from utils import send_text_message
+from utils import send_text_message, accesstoken, secret, weatherkey
 import parse_weather
 mStates = ["user", "state1", "state2", "cat", "likecat", "weather"]
 
 load_dotenv()
 print(platform.python_version())
-accesstoken = "qg4eVtnYir36ZcCSDNZyXyy+lpyDaM9Py1YIGzlvdsd82IUPYSfIZoLaYHroMQC7agDi2c3iI6JndkMgM9GwRHUqnilvhranozggoKPKug8wW7NaM5eUvJ6qWgQNqm6U/wHaLUtfVp63gSVOBi/9BQdB04t89/1O/w1cDnyilFU="
-secret = "48da0c6234a4fca127ccaae491c55dbf"
-weatherkey = "CWB-EECDE765-431A-4E99-BE52-2FD6E7E33631"
+# accesstoken = "qg4eVtnYir36ZcCSDNZyXyy+lpyDaM9Py1YIGzlvdsd82IUPYSfIZoLaYHroMQC7agDi2c3iI6JndkMgM9GwRHUqnilvhranozggoKPKug8wW7NaM5eUvJ6qWgQNqm6U/wHaLUtfVp63gSVOBi/9BQdB04t89/1O/w1cDnyilFU="
+# secret = "48da0c6234a4fca127ccaae491c55dbf"
+# weatherkey = "CWB-EECDE765-431A-4E99-BE52-2FD6E7E33631"
 
 all_none_init_states = ["state1", "state2", "cat","likecat","weather"]
 

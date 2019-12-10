@@ -23,7 +23,7 @@ class WeatherParser(object):
         self.doc_name = "F-C0032-001"
         #self.user_key = get_env_variable("WEATHER_AUTHORIZATION_KEY")
         self.user_key = utils.weatherkey
-        self.api_link = "http://opendata.cwb.gov.tw/opendataapi?dataid=%s&authorizationkey=%s" % (
+        self.api_link = f"http://opendata.cwb.gov.tw/opendataapi?dataid=%s&authorizationkey=%s" % (
             self.doc_name, self.user_key)
 
     def getReportWithAPI(self, location):
